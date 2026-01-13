@@ -1,17 +1,49 @@
 package com.fitness;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
 
-class AppTest {
+import static org.junit.Assert.*;
+
+public class AppTest {
 
     @Test
-    void caloriesBurnedCalculatesCorrectly() {
-        assertEquals(300, App.caloriesBurned(30, 10));
+    public void testCaloriesBurnedBasic() {
+        App app = new App();
+
+        int result = app.caloriesBurned(30, 8);
+
+        // если формула minutes * intensity
+        assertEquals(240, result);
     }
 
     @Test
-    void caloriesBurnedThrowsOnNegative() {
-        assertThrows(IllegalArgumentException.class, () -> App.caloriesBurned(-1, 10));
+    public void testCaloriesBurnedOneMinute() {
+        App app = new App();
+
+        int result = app.caloriesBurned(1, 5);
+
+        assertEquals(5, result);
+    }
+
+    @Test
+    public void testCaloriesBurnedLargeValues() {
+        App app = new App();
+
+        int result = app.caloriesBurned(120, 10);
+
+        assertEquals(1200, result);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCaloriesBurnedInvalidMinutesThrows() {
+        App app = new App();
+        app.caloriesBurned(0, 5);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCaloriesBurnedInvalidIntensityThrows() {
+        App app = new App();
+        app.caloriesBurned(10, 0);
     }
 }
+
