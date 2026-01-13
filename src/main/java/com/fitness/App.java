@@ -1,15 +1,15 @@
 package com.fitness;
 
 public class App {
-    public static void main(String[] args) {
-        System.out.println("Fitness App skeleton");
-    }
 
-    // Пример "логики" для теста
-    public static int caloriesBurned(int minutes, int caloriesPerMinute) {
-        if (minutes < 0 || caloriesPerMinute < 0) {
-            throw new IllegalArgumentException("Values must be non-negative");
+    public int caloriesBurned(int minutes, int intensity) {
+        if (minutes <= 0) {
+            throw new IllegalArgumentException("Minutes must be > 0");
         }
-        return minutes * caloriesPerMinute;
+        if (intensity <= 0) {
+            throw new IllegalArgumentException("Intensity must be > 0");
+        }
+
+        return minutes * intensity;
     }
 }
