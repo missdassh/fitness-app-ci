@@ -12,7 +12,6 @@ public class AppTest {
 
         int result = app.caloriesBurned(30, 8);
 
-        // если формула minutes * intensity
         assertEquals(240, result);
     }
 
